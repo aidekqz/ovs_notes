@@ -42,3 +42,12 @@ ovsdb-client get-schema --db tcp:192.168.1.2:6642,tcp:192.168.1.3:6642 OVN_South
 # Watch real-time changes in Port_Binding table
 ovsdb-client monitor "unix:/var/run/ovn/ovnsb_db.sock" OVN_Southbound Port_Binding
 ```
+
+```sh
+# create internal port
+ovs-vsctl add-port br0 test-port -- set interface test-port type=internal
+# set tag for port
+ovs-vsctl set port test-port tag=110
+# set trunks for port
+ovs-vscctl set port test-port trunks=120-130,140
+```
